@@ -161,3 +161,10 @@ Nu kan vi göra lite routes planering för projektet.
 ### POST
 
 To be continued...
+
+## Frontend
+
+* Sidan kommer att ha en meny med länkar till alla routes.
+* Startsidan ska ha en hero med en bild och en rubrik.
+* Skapa en navbar komponent och ladda in i layout.njk
+* Skapa en hero komponent och ladda in i index.njk
