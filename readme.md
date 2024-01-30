@@ -133,3 +133,13 @@ router.get('/', function (req, res) {
 
 module.exports = router
 ```
+
+## Hur ser min databas ut då?
+
+Och hur redovisar jag att jag kan planera och skapa en databas?
+
+![planering](./public/cat_table.png)
+
+### Skapa tabellerna i TablePlus
+
+Kom ihåg att döpa tabellerna till **<förnamn>_<tabellnamn>**
