@@ -177,3 +177,7 @@ To be continued...
 * Startsidan ska ha en hero med en bild och en rubrik.
 * Skapa en navbar komponent och ladda in i layout.njk
 * Skapa en hero komponent och ladda in i index.njk
+
+## SQL
+
+`SELECT * FROM jens_cat JOIN jens_cat_breed ON jens_cat.breed_id = jens_cat_breed.id;`
