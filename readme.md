@@ -83,6 +83,8 @@ app.listen(port, () => {
   },
 ```
 
+**Rör aldrig `package-lock.json`, den sköter npm själv**
+
 ## Skapa ytterligare filer
 
 Du behöver innehållet i dessa filer.
