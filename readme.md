@@ -140,6 +140,10 @@ Och hur redovisar jag att jag kan planera och skapa en databas?
 
 ![planering](./public/cat_table.png)
 
+Jag har här skapat en-till-många relation mellan katt och kattras. Det vill säga att en katt kan bara ha en ras, men en ras kan ha flera katter.
+
+Blandraser och annat är lite mer komplicerat och det får vi ta senare.
+
 ### Skapa tabellerna i TablePlus
 
 Kom ihåg att döpa tabellerna till **<förnamn>_<tabellnamn>**
