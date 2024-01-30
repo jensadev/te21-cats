@@ -143,7 +143,7 @@ Skapa tabellerna i draw.io du kan sedan exportera som png och lägga i public ma
 
 Jag har här skapat en-till-många relation mellan katt och kattras. Det vill säga att en katt kan bara ha en ras, men en ras kan ha flera katter.
 
-Blandraser och annat är lite mer komplicerat och det får vi ta senare.
+Om du har skapat en relation som är många-till-många så behöver du en pivot tabell. Det vill säga en tabell som håller koll på vilka id:n som hör ihop.
 
 ### Skapa tabellerna i TablePlus
 
