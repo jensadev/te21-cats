@@ -137,6 +137,7 @@ module.exports = router
 ## Hur ser min databas ut då?
 
 Och hur redovisar jag att jag kan planera och skapa en databas?
+Skapa tabellerna i draw.io du kan sedan exportera som png och lägga i public mappen. **fil>export>png**
 
 ![planering](./public/cat_table.png)
 
