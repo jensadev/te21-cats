@@ -137,13 +137,17 @@ module.exports = router
 ## Hur ser min databas ut då?
 
 Och hur redovisar jag att jag kan planera och skapa en databas?
-Skapa tabellerna i draw.io du kan sedan exportera som png och lägga i public mappen. **fil>export>png**
+Skapa tabellerna i draw.io du kan sedan exportera som png och lägga i public mappen. Välj innehållet och checka i selection only när du exporterar. **fil>export as>png**
 
 ![planering](./public/cat_table.png)
 
 Jag har här skapat en-till-många relation mellan katt och kattras. Det vill säga att en katt kan bara ha en ras, men en ras kan ha flera katter.
 
+#### Många-till-många
+
 Om du har skapat en relation som är många-till-många så behöver du en pivot tabell. Det vill säga en tabell som håller koll på vilka id:n som hör ihop.
+
+![planering](./public/movie_table.png)
 
 ### Skapa tabellerna i TablePlus
 
