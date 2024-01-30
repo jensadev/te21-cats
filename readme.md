@@ -143,3 +143,21 @@ Och hur redovisar jag att jag kan planera och skapa en databas?
 ### Skapa tabellerna i TablePlus
 
 Kom ihåg att döpa tabellerna till **<förnamn>_<tabellnamn>**
+
+## Routes
+
+Nu kan vi göra lite routes planering för projektet.
+
+### GET
+
+| Route | Beskrivning |
+| --- | --- |
+| / | Startsida |
+| /cats | Lista alla katter i systemet |
+| /cats/:id | Hämta info om en specifik katt |
+| /races | Hämta lista på alla kattraser |
+| /races/:id | Hämta info om en specifik kattras |
+
+### POST
+
+To be continued...
