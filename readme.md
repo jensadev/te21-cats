@@ -180,4 +180,31 @@ To be continued...
 
 ## SQL
 
-`SELECT * FROM jens_cat JOIN jens_cat_breed ON jens_cat.breed_id = jens_cat_breed.id;`
+Välj all data från tabellen jens_cat och joina breed. 
+
+```sql
+SELECT * FROM jens_cat JOIN jens_cat_breed ON jens_cat.breed_id = jens_cat_breed.id;
+```
+
+För att få en bättre query kan vi bestämma vilka kolumner vi vill ha.
+
+```sql
+SELECT jens_cat.*. jens_cat_breed.name AS breed FROM jens_cat JOIN jens_cat_breed ON jens_cat.breed_id = jens_cat_breed.id;
+```
+
+Om vi har en kopplingstabell som heter jens_movie_director och vi vill ha all data från movie och director.
+
+```sql
+SELECT * FROM jens_movie_director
+JOIN jens_movie ON jens_movie_director.movie_id = jens_movie.id
+JOIN jens_director ON jens_movie_director.director_id = jens_director.id;
+```
+
+Denna query kan även den förbättras genom att välja ut vilka kolumner vi vill ha.
+
+```sql
+SELECT jens_movie.title, jens_director.name FROM jens_movie_director
+JOIN jens_movie ON jens_movie_director.movie_id = jens_movie.id
+JOIN jens_director ON jens_movie_director.director_id = jens_director.id;
+```
+
