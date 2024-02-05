@@ -16,7 +16,10 @@ router.get('/search', function (req, res) {
   WHERE jens_movie.title LIKE "%QUERY%";
 */
 
-  res.render('search.njk', { searchQuery: req.query.q })
+  let query = req.query.q
+  query = query.replace(/[^a-zA-Z0-9]/g, '')
+
+  res.render('search.njk', { title: 'Search', query: query })
 })
 
 module.exports = router
