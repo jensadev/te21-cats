@@ -80,7 +80,18 @@ router.post('/cats', async function (req, res) {
   }
 })
 
-
+router.get('/deletecat/:id', async function (req, res) {
+  try {
+    const [result] = await pool.promise().query(
+      `DELETE FROM jens_cat WHERE id = ?`,
+      [req.params.id]
+    )
+    res.redirect('/cats')
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})
 
 
 

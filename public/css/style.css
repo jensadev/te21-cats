@@ -8,3 +8,13 @@ body {
   margin-inline: auto;
   padding: 1rem;
 }
+
+.catlist {
+  list-style: none;
+  padding: 0;
+}
+
+.catlist li {
+  display: flex;
+  justify-content: space-between;
+}
