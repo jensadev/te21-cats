@@ -208,3 +208,33 @@ JOIN jens_movie ON jens_movie_director.movie_id = jens_movie.id
 JOIN jens_director ON jens_movie_director.director_id = jens_director.id;
 ```
 
+# Arbetsordning med databas
+
+1. Skapa databasen
+2. Skapa tabellerna
+3. Fyll tabellerna med data (det räcker med 1 rad per tabell)
+4. Skapa en query för att hämta all data från tabellerna
+  - `SELECT * FROM <tabell>` Kör queryn i TablePlus
+5. Förbered ditt projekt för att kunna använda databasen
+  - Skapa en server.js fil
+  - Skapa en .gitignore fil (.env node_modules/)
+  - Skapa en .env fil
+  - Skapa en db.js fil (kopiera från förut)
+6. Starta server och kolla att det fungerar att surfa till /
+7. Skapa en route för att hämta all data från tabellen, /dbtest
+  - Börja med att returnera json, `res.json({ message: 'Hello' })`
+  - Kolla att det fungerar att surfa till /dbtest
+8. Ladda in db.js i routen, `const pool = require('../db')`
+9. I din route, skapa en query för att hämta all data från tabellen
+  - Detta är en promise så du behöver använda async/await. 
+  - `pool.promise().query('SELECT * FROM <tabell>')`
+  - Din data behöver sparas i en variabel, den kan heta result eller vad din data faktiskt innehåller. Spara den i square brackets, `const [data]`.
+  - Skicka tillbaka datan med `res.json({data})`
+10. Kolla att det fungerar att surfa till /dbtest och att du får tillbaka datan.
+11. Skapa en vy för att visa datan
+  - I din views mapp, skapa en njk fil för att visa datan (kopiera index.njk)
+  - Skicka datan till vyn, `res.render('dbtest.njk', { data })`
+  - Kom ihåg att du inte kan ha både res.json och res.render i samma route.
+12. Kolla att det fungerar att surfa till /dbtest och att du får tillbaka datan i din template.
+
+Gå vidare och repetera stegen som behövs för att göra en join query.
