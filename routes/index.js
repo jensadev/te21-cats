@@ -10,16 +10,15 @@ router.get('/', function (req, res) {
   })
 })
 
-router.get('/dbtest', async function (req, res) {
+// jag kan nu byta namn på routen till /cats istället för dbtest
+router.get('/cats', async function (req, res) {
   try {
-    // const [cats] = await pool.promise().query('SELECT * FROM jens_cat')
     const [catsWithBreed] = await pool.promise().query(
       `SELECT jens_cat.*, jens_cat_breed.name as breed, jens_cat_breed.description
       FROM jens_cat 
       JOIN jens_cat_breed
       ON jens_cat.breed_id = jens_cat_breed.id`
     );
-    console.log(catsWithBreed)
     return res.render('cats.njk', {
       title: 'Katter',
       cats: catsWithBreed
@@ -30,8 +29,27 @@ router.get('/dbtest', async function (req, res) {
   }
 })
 
-router.get('/dbtest/:id', async function (req, res) {
-
+// för att hämta en katt så är namnet på route fortfarande cats, men vi lägger till /:id
+// detta indikerar då att vi väljer en specifik katt
+router.get('/cats/:id', async function (req, res) {
+  try {
+    const [catsWithBreed] = await pool.promise().query(
+      `SELECT jens_cat.*, jens_cat_breed.name as breed, jens_cat_breed.description
+      FROM jens_cat 
+      JOIN jens_cat_breed
+      ON jens_cat.breed_id = jens_cat_breed.id
+      WHERE jens_cat.id = ?`, [req.params.id]
+    );
+    // jag måste ange att jag vill ha första elementet i arrayen,
+    // annars får jag en array med en katt
+    return res.render('cat.njk', {
+      title: 'Katt',
+      cat: catsWithBreed[0]
+    })
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
 })
 
 
