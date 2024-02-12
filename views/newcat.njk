@@ -1,0 +1,31 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<main class="wrapper">
+  <h1>Som kattägare vill jag att min katt också ska få vara med</h1>
+  <p>Formuläret visas på sidan /newcat, men när formuläret skickas så används metoden POST för att skicka det till /cats</p>
+  <form action="/cats" method="post">
+    <div class="form-element">
+      <label for="name">Namn:</label>
+      <input type="text" name="name" id="name">
+    </div>
+    <div class="form-element">
+      <label for="age">Ålder:</label>
+      <input type="number" name="age" id="age">
+    </div>
+    <div class="form-element">
+      <label for="weight">Vikt:</label>
+      <input type="number" name="weight" id="weight">
+    </div>
+    <div class="form-element">
+      <label for="breed">Ras:</label>
+      <select name="breed" id="breed">
+        {% for breed in breeds %}
+          <option value="{{ breed.id }}">{{ breed.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <input type="submit" value="Lägg till katt">
+  </form>
+</main>
+{% endblock %}

@@ -5,7 +5,7 @@ const pool = require('../db')
 
 router.get('/', function (req, res) {
   res.render('index.njk', { 
-    title: 'Hej Noel och te21',
+    title: 'Hej te21',
     message: 'Välkommen till min kattadatabas'
   })
 })
@@ -52,9 +52,33 @@ router.get('/cats/:id', async function (req, res) {
   }
 })
 
+router.get('/newcat', async function (req, res) {
+  try {
+    const [breeds] = await pool.promise().query('SELECT * FROM jens_cat_breed')
+    return res.render('newcat.njk', {
+      title: 'Ny katt',
+      breeds: breeds
+    })
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})
 
-
-
+router.post('/cats', async function (req, res) {
+  // res.json(req.body) för att kolla och kika den data vi får från front-end
+  try {
+    const [result] = await pool.promise().query(
+      `INSERT INTO jens_cat (name, age, breed_id)
+      VALUES (?, ?, ?)`,
+      [req.body.name, req.body.age, req.body.breed]
+    )
+    res.redirect('/cats')
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})
 
 
 
