@@ -29,6 +29,34 @@ router.get('/cats', async function (req, res) {
   }
 })
 
+// den här routen behöver ligga före /cats/:id för att inte krocka
+router.get('/cats/new', async function (req, res) {
+  try {
+    const [breeds] = await pool.promise().query('SELECT * FROM jens_cat_breed')
+    return res.render('newcat.njk', {
+      title: 'Ny katt',
+      breeds: breeds
+    })
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})
+
+// eftersom delete routen har en parameter efter id lägger vi även den innan id
+router.get('/cats/:id/delete', async function (req, res) {
+  try {
+    const [result] = await pool.promise().query(
+      `DELETE FROM jens_cat WHERE id = ?`,
+      [req.params.id]
+    )
+    res.redirect('/cats')
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})
+
 // för att hämta en katt så är namnet på route fortfarande cats, men vi lägger till /:id
 // detta indikerar då att vi väljer en specifik katt
 router.get('/cats/:id', async function (req, res) {
@@ -43,21 +71,8 @@ router.get('/cats/:id', async function (req, res) {
     // jag måste ange att jag vill ha första elementet i arrayen,
     // annars får jag en array med en katt
     return res.render('cat.njk', {
-      title: 'Katt',
+      title: 'Katt - ' + catsWithBreed[0].name,
       cat: catsWithBreed[0]
-    })
-  } catch (error) {
-    console.log(error)
-    res.sendStatus(500)
-  }
-})
-
-router.get('/newcat', async function (req, res) {
-  try {
-    const [breeds] = await pool.promise().query('SELECT * FROM jens_cat_breed')
-    return res.render('newcat.njk', {
-      title: 'Ny katt',
-      breeds: breeds
     })
   } catch (error) {
     console.log(error)
@@ -80,18 +95,6 @@ router.post('/cats', async function (req, res) {
   }
 })
 
-router.get('/deletecat/:id', async function (req, res) {
-  try {
-    const [result] = await pool.promise().query(
-      `DELETE FROM jens_cat WHERE id = ?`,
-      [req.params.id]
-    )
-    res.redirect('/cats')
-  } catch (error) {
-    console.log(error)
-    res.sendStatus(500)
-  }
-})
 
 
 

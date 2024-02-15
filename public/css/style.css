@@ -18,3 +18,16 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.form-element {
+  margin-bottom: 1rem;
+}
+
+.form-element label {
+  display: block;
+}
+
+.form-element input, select {
+  width: 100%;
+  padding: 0.4rem;
+}

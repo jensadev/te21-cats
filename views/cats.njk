@@ -5,10 +5,10 @@
   <h1>{{ title }}</h1>
   <p>Jag kan nu byta namn på min route till /cats för att visa en lista på alla katter.</p>
   <p>Nästa steg blir sedan att göra sidor för varje enskild katt.</p>
-  <p>Jag vill <a href="/newcat">registrera min katt.</a></p>
+  <p>Jag vill <a href="/cats/new">registrera min katt.</a></p>
   <ul class="catlist">
     {% for cat in cats %}
-      <li><a href="/cats/{{cat.id}}">{{ cat.name }}</a><a href="/deletecat/{{ cat.id }}"">Ta bort katt</a></li>
+      <li><a href="/cats/{{cat.id}}">{{ cat.name }}</a><a href="/cats/{{ cat.id }}/delete">Ta bort katt</a></li>
     {% endfor %}
   </ul>
 </main>
