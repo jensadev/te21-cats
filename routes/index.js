@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const markdownit = require('markdown-it')
 
 const pool = require('../db')
+const md = markdownit()
 
 router.get('/', function (req, res) {
   res.render('index.njk', { 
@@ -62,7 +64,7 @@ router.get('/cats/:id/delete', async function (req, res) {
 router.get('/cats/:id', async function (req, res) {
   try {
     const [catsWithBreed] = await pool.promise().query(
-      `SELECT jens_cat.*, jens_cat_breed.name as breed, jens_cat_breed.description
+      `SELECT jens_cat.*, jens_cat_breed.name as breed, jens_cat_breed.description as breed_description
       FROM jens_cat 
       JOIN jens_cat_breed
       ON jens_cat.breed_id = jens_cat_breed.id
@@ -72,7 +74,8 @@ router.get('/cats/:id', async function (req, res) {
     // annars får jag en array med en katt
     return res.render('cat.njk', {
       title: 'Katt - ' + catsWithBreed[0].name,
-      cat: catsWithBreed[0]
+      cat: catsWithBreed[0],
+      description: md.render(catsWithBreed[0].description)
     })
   } catch (error) {
     console.log(error)

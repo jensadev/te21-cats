@@ -8,6 +8,10 @@
     <h2>Ras: {{ cat.breed }}</h2>
     <p>Ålder: {{ cat.age }}</p>
     <p>Vikt: {{ cat.weight }}</p>
+    <p>Om rasen: {{ cat.breed_description }}</p>
+    {% if description %}
+      {{ description | safe }}
+    {% endif %}
   </div>
 </main>
 {% endblock %}
