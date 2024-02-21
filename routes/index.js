@@ -95,8 +95,23 @@ router.post('/cats', async function (req, res) {
   }
 })
 
+router.get('/newbreed', function (req, res) {
+  res.render('newbreed.njk', { title: 'Ny ras' })
+})
 
-
+router.post('/newbreed', async function (req, res) {
+  // console.log(req.body)
+// plocka ut de värden vi ska ha
+// använda name/id från inputfälten
+  const breed = req.body.breed
+  const description = req.body.description
+  console.log(breed, description)
+  // säkerhet, vad har vi för data????
+  // nästa steg är att skriva in i databasen
+  // tableplus för att lära oss SQL frågan
+  // await pool.promise().query()
+  res.json(req.body)
+})
 
 
 

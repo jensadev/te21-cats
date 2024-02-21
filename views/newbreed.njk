@@ -1,0 +1,19 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<main class="wrapper">
+  <h1>Lägg till en ny kattras</h1>
+  <form action="/newbreed" method="post">
+    <label for="breed">Ras</label>
+    <input type="text" id="breed" name="breed" required>
+    <label for="description">Beskrivning</label>
+    <textarea 
+      name="description" 
+      id="description" 
+      cols="30" 
+      rows="10"></textarea>
+    <input type="submit" value="Skapa ny kattras">
+
+  </form>
+</main>
+{% endblock %}
