@@ -109,6 +109,8 @@ router.post('/newbreed', async function (req, res) {
   // säkerhet, vad har vi för data????
   // nästa steg är att skriva in i databasen
   // tableplus för att lära oss SQL frågan
+  // INSERT INTO `jens_cat_breed` (`name`, `description`) VALUES
+  // ('Lykoi', 'En ondskefull varulvskatt med stora tänder. Grr.');
   // await pool.promise().query()
   res.json(req.body)
 })
