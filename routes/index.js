@@ -17,7 +17,8 @@ router.get('/cats', async function (req, res) {
       `SELECT jens_cat.*, jens_cat_breed.name as breed, jens_cat_breed.description
       FROM jens_cat 
       JOIN jens_cat_breed
-      ON jens_cat.breed_id = jens_cat_breed.id`
+      ON jens_cat.breed_id = jens_cat_breed.id
+      ORDER BY breed ASC, name ASC`
     );
     return res.render('cats.njk', {
       title: 'Katter',
@@ -62,7 +63,7 @@ router.get('/cats/:id/delete', async function (req, res) {
 router.get('/cats/:id', async function (req, res) {
   try {
     const [catsWithBreed] = await pool.promise().query(
-      `SELECT jens_cat.*, jens_cat_breed.name as breed, jens_cat_breed.description
+      `SELECT jens_cat.*, jens_cat_breed.name as breed, jens_cat_breed.description as breed_desc
       FROM jens_cat 
       JOIN jens_cat_breed
       ON jens_cat.breed_id = jens_cat_breed.id
@@ -84,9 +85,9 @@ router.post('/cats', async function (req, res) {
   // res.json(req.body) för att kolla och kika den data vi får från front-end
   try {
     const [result] = await pool.promise().query(
-      `INSERT INTO jens_cat (name, age, breed_id)
-      VALUES (?, ?, ?)`,
-      [req.body.name, req.body.age, req.body.breed]
+      `INSERT INTO jens_cat (name, age, weight, breed_id, description)
+      VALUES (?, ?, ?, ?, ?)`,
+      [req.body.name, req.body.age, req.body.weight, req.body.breed, req.body.desc]
     )
     res.redirect('/cats')
   } catch (error) {
@@ -100,19 +101,18 @@ router.get('/newbreed', function (req, res) {
 })
 
 router.post('/newbreed', async function (req, res) {
-  // console.log(req.body)
-// plocka ut de värden vi ska ha
-// använda name/id från inputfälten
   const breed = req.body.breed
   const description = req.body.description
   console.log(breed, description)
-  // säkerhet, vad har vi för data????
-  // nästa steg är att skriva in i databasen
-  // tableplus för att lära oss SQL frågan
-  // INSERT INTO `jens_cat_breed` (`name`, `description`) VALUES
-  // ('Lykoi', 'En ondskefull varulvskatt med stora tänder. Grr.');
-  // await pool.promise().query()
-  res.json(req.body)
+  const [result] = await pool.promise().query('INSERT INTO jens_cat_breed (name, description) VALUES (?, ?)',
+    [breed, description])
+  console.log(result)
+  if (result.affectedRows === 1) {
+    res.redirect('/cats')
+  } else {
+    // meddela användaren att något gick fel
+    res.redirect('/newbreed')
+  }
 })
 
 
