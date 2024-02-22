@@ -8,6 +8,7 @@
   <p>Jag vill <a href="/cats/new">registrera min katt.</a></p>
   <p>Jag vill <a href="/newbreed">lägga till en ny kattras.</a></p>
   <ul class="catlist">
+    <li><strong>Namn</strong><strong>Ras</strong><strong></strong></li>
     {% for cat in cats %}
       <li><a href="/cats/{{cat.id}}">{{ cat.name }}</a>{{ cat.breed }}<a href="/cats/{{ cat.id }}/delete">Ta bort katt</a></li>
     {% endfor %}
