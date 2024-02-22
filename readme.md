@@ -208,7 +208,7 @@ JOIN jens_movie ON jens_movie_director.movie_id = jens_movie.id
 JOIN jens_director ON jens_movie_director.director_id = jens_director.id;
 ```
 
-# Arbetsordning med databas
+# Arbetsordning med databas, READ
 
 1. Skapa databasen
 2. Skapa tabellerna
@@ -238,3 +238,20 @@ JOIN jens_director ON jens_movie_director.director_id = jens_director.id;
 12. Kolla att det fungerar att surfa till /dbtest och att du får tillbaka datan i din template.
 
 Gå vidare och repetera stegen som behövs för att göra en join query.
+
+# Arbetsordning med databas, CREATE
+
+Kom ihåg att alla exempel behöver anpassas efter det du gör.
+I exemplet så finns det formulär för nya katter och nya kattraser, de ser ut och fungerar lite olika. Börja med ett formulär för att skapa en resurs.
+
+1. Skapa en route för att visa formuläret, /newSOMETHING
+  - https://github.com/jensadev/te21-cats/blob/88ef995ae53ac36ee5cbf9a4d7aed1bf5f732d55/routes/index.js#L99
+2. Skapa en vy för att visa formuläret, newSOMETHING.njk
+  - https://github.com/jensadev/te21-cats/blob/cats-and-cat/views/newbreed.njk
+3. Skapa en route för att ta emot formuläret, /newSOMETHING
+  - `router.post('/newSOMETHING', async (req, res) => {`
+  - `const { name } = req.body`
+  - `const [result] = await pool.promise().query('INSERT INTO <tabell> (name) VALUES (?)', [name])`
+  - `res.redirect('/newSOMETHING')`
+4. Kolla att det fungerar att skicka in data i formuläret och att det sparas i databasen.
+
