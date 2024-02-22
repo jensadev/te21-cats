@@ -1,3 +1,7 @@
+**Viktigt**
+
+Repot är uppdelat från "starten" och sedan fortsättningen. Fortsättningen bor i branchen [cats-and-cat](https://github.com/jensadev/te21-cats/tree/cats-and-cat)
+
 # Recept för ett nytt projekt
 
 * ny mapp `mkdir nytt-projekt`
